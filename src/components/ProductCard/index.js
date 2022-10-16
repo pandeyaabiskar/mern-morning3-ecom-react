@@ -1,13 +1,15 @@
-export default function ProductCard() {
+export default function ProductCard(props) {
+  const {data} = props;
+
   return (
     <div className="product-card">
-      <a href="/products/">
+      <a href={`/products/${data._id}`}>
         <div className="product-image">
-          <img src="#" />
+          <img src={data.image} />
         </div>
         <div className="product-info">
-          <h5>XYZ</h5>
-          <h6>$100</h6>
+          <h5>{data.title}</h5>
+          <h6>${data.price}</h6>
         </div>
       </a>
     </div>
