@@ -23,7 +23,7 @@ export default function HomeLayout() {
   // }, []);
 
   //Context
-  const { productData, isLoading, error } = useContext(ProductContext);
+  // const { productData, isLoading, error } = useContext(ProductContext);
 
   return (
     <section className="products">
