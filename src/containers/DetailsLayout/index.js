@@ -1,6 +1,14 @@
-import './detailslayout.css'
+import "./detailslayout.css";
+import { useParams, useNavigate } from "react-router-dom";
+import { useFetch } from "../../utils/hooks";
 
 export default function DetailsLayout() {
+  const { productID } = useParams();
+  const navigate = useNavigate()
+  const { data, isLoading, error } = useFetch(
+    `http://localhost:4000/api/products/${productID}`
+  );
+
   return (
     <section className="product">
       <div className="product__photo">
@@ -11,7 +19,7 @@ export default function DetailsLayout() {
               <i className="material-icons">favorite_border</i>
             </div>
             <img
-              src="https://res.cloudinary.com/john-mantas/image/upload/v1537291846/codepen/delicious-apples/green-apple-with-slice.png"
+              src={data[0]?.image}
               alt="green apple slice"
             />
           </div>
@@ -47,7 +55,7 @@ export default function DetailsLayout() {
       </div>
       <div className="product__info">
         <div className="title">
-          <h1>Delicious Apples</h1>
+          <h1>{data[0]?.title}</h1>
           <span>COD: 45999</span>
         </div>
         <div className="price">
@@ -91,7 +99,7 @@ export default function DetailsLayout() {
             <li>They're linked to a lowest risk of diabetes</li>
           </ul>
         </div>
-        <button className="buy--btn">ADD TO CART</button>
+        <button className="buy--btn" onClick={() => navigate('/')}>ADD TO CART</button>
       </div>
     </section>
   );

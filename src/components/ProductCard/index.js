@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 export default function ProductCard(props) {
-  const {data} = props;
+  const { data } = props;
 
   return (
     <div className="product-card">
-      <a href={`/products/${data._id}`}>
+      <Link to={`/products/${data._id}`}>
         <div className="product-image">
           <img src={data.image} />
         </div>
@@ -11,7 +13,7 @@ export default function ProductCard(props) {
           <h5>{data.title}</h5>
           <h6>${data.price}</h6>
         </div>
-      </a>
+      </Link>
     </div>
   );
 }
